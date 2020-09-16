@@ -21,7 +21,7 @@ public class Separator {
         return value.split(DEFAULT_SEPARATOR);
     }
 
-    private String[] matcherWithTwoSlashSigns(String value) {
+    String[] matcherWithTwoSlashSigns(String value) {
         Matcher matcher =Pattern.compile(CUSTOM_DELIMITER_REGEX).matcher(value);
         matcher.matches();
         String custom = getCustomDelimiters(matcher);
@@ -29,7 +29,7 @@ public class Separator {
         return numbers.split(custom);
     }
 
-    private String getCustomDelimiters(Matcher matcher) {
+    String getCustomDelimiters(Matcher matcher) {
         return Stream.of(matcher.group(1).split(PATTERN_TO_REPLACE))
                 .map(Pattern::quote)
                 .collect(Collectors.joining(PIPE));

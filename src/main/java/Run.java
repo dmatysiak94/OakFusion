@@ -6,6 +6,6 @@ public class Run {
 
         Operation operation = new Operation();
 
-        System.out.println(operation.add("//[aa][b]\n4aa7b4"));
+        System.out.println(operation.add("//[g][v]\n1000g10001v999"));
     }
 }

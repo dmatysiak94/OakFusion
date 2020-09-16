@@ -23,4 +23,11 @@ public class IntegerTools {
                 .filter(number -> number <= 1000)
                 .collect(Collectors.toList());
     }
+
+    public static int checkIfNegative (int value){
+        if (value < 0){
+            throw new RuntimeException("Negative numbers are Not Allowed: " + value);
+        }
+        return value;
+    }
 }

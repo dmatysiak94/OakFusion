@@ -28,12 +28,12 @@ public class Operation {
             List<Integer> negativeNumbers = IntegerTools.getNegativeValuesFromList(filteredNumbersList);
 
             if(!negativeNumbers.isEmpty()){
-                    throw new RuntimeException("Negative numbers are Not Allowed" + negativeNumbers);
+                    throw new RuntimeException("Negative numbers are Not Allowed: " + negativeNumbers);
             }
 
             return IntegerTools.sumValuesInArray(filteredNumbersList);
         }
-        return StringTools.convertStringToInt(numbers);
+        return IntegerTools.checkIfNegative(StringTools.convertStringToInt(numbers));
     }
 
 

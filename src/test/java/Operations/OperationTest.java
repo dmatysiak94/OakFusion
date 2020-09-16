@@ -36,6 +36,38 @@ class OperationTest {
     }
 
     @ParameterizedTest
+    @MethodSource("paramsFor_addTest_shouldReturnValueIfOneNumber")
+    public void addTest_shouldReturnValueIfOneNumber(String text, int output) {
+
+        Assertions.assertThat(operation.add(text)).isEqualTo(output);
+    }
+
+    private static Object[] paramsFor_addTest_shouldReturnValueIfOneNumber() {
+
+        return new Object[]{
+                new Object[]{"0", 0},
+                new Object[]{"1000", 1000},
+                new Object[]{"2", 2}
+        };
+    }
+
+    @Test
+    public void addTest_ThrowRuntimeExceptionWhenSingleValueIsNegativeValue(){
+        assertThrows(RuntimeException.class, () -> {
+            operation.add("-4");
+        });
+    }
+
+    @Test
+    public void addTest_showIncorrectValueWhenRuntimeException() {
+        try {
+            operation.add("-5");
+        } catch (RuntimeException exception) {
+            Assertions.assertThat(exception.getMessage()).contains("Negative numbers are Not Allowed: -5");
+        }
+    }
+
+    @ParameterizedTest
     @MethodSource("paramsFor_addTest_shouldReturnSumOfMaxTwoValues")
     public void addTest_shouldReturnSumOfMaxTwoValues(String text, int output) {
 
@@ -108,7 +140,7 @@ class OperationTest {
 
     @Test
     public void addTest_ThrowRuntimeExceptionWhenNegativeValue() {
-        Exception exception = assertThrows(RuntimeException.class, () -> {
+        assertThrows(RuntimeException.class, () -> {
             operation.add("1,4,-4");
         });
     }
@@ -118,7 +150,7 @@ class OperationTest {
         try {
             operation.add("1,4,-4,-5");
         } catch (RuntimeException exception) {
-            Assertions.assertThat(exception.getMessage()).contains("Negative numbers are Not Allowed[-4, -5]");
+            Assertions.assertThat(exception.getMessage()).contains("Negative numbers are Not Allowed: [-4, -5]");
         }
     }
 
